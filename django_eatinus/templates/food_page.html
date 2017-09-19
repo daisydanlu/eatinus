@@ -1,0 +1,68 @@
+{% extends "base.html" %} 
+
+{% block external %}
+<link rel="stylesheet" href="{{ STATIC_URL }}css/starbox.css" />
+<script type="text/javascript" src="{{ STATIC_URL }}csrf.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}starbox.js"></script>
+
+{% endblock %}
+
+{% block content %} 
+<div class="col-sm-9">
+	<div>
+	{% include 'food_item.html' %} 
+	</div>
+	<hr>
+	
+	<div class="userrating">
+		{% if user_rating %} 
+		<p>Your rating:
+			<span class="rateit" data-rateit-value="{{ user_rating.score|floatformat:-1 }}" 
+				data-rateit-ispreset="true" data-rateit-readonly="true"></span>	
+		</p>
+		<hr/>
+		{% endif %}
+	</div>
+	
+	{% if user.is_authenticated and not user_rating %} 
+	<div class="starbox">
+		<span class="s_name"><strong>Click to rate:</strong></span>
+		<ul class="star_ul fl">
+			<li value="1"><span class= "one-star" title="Crappy"></span></li>
+			<li value="2"><span class= "two-star" title="Bad"></span></li>
+			<li value="3"><span class= "three-star" title="OK"></span></li>
+			<li value="4"><span class= "four-star" title="Good"></span></li>
+			<li value="5"><span class= "five-star" title="Awesome"></span></li>
+		</ul>
+		<span class="s_result fl"></span>
+	</div>
+	<hr/>
+	{% endif %}
+
+	<div>
+	{% include 'comment_save_form.html' %} 
+	</div>
+	
+	<div>
+	<hr>
+	{% include 'comment_list.html' %} 
+	</div>
+
+</div>
+
+<div class="col-sm-3">
+		<div class="info">
+			<div class="infohead">You may also be interested</div>
+			<ul class="nav infolist">
+			{% for food in similar_foods %}
+			<li>
+				<div class="img"><a href="/food/{{ food.id }}/"><img src="{{ MEDIA_URL }}{{ food.images.all.0.thumb|urlencode }}"></a></div>
+				<div class="title">{{ food.name|escape }}</div>
+				<div class="author">{{ food.user.username|escape }}</div>
+				<div class="clear"></div>
+			</li>
+			{% endfor %}
+			</ul>
+		</div>
+</div>
+{% endblock %}

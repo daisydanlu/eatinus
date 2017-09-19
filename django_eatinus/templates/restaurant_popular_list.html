@@ -1,0 +1,18 @@
+{% if restaurants %}
+{% for restaurant in restaurants %}
+	<div class="popularlist">
+		<div class="content">
+			<div class="img">
+				<a href="/restaurant/{{ restaurant.id }}/"><img src="{{ MEDIA_URL }}{{ restaurant.images.all.0.thumb|urlencode }}"></a>
+			</div>
+			<div class="info1">
+				<p class="title">
+					<a href="/restaurant/{{ restaurant.id }}/">{{ restaurant.name|escape }}</a>	
+				</p>
+				<div class="rateit" data-rateit-value="{{ restaurant.statistic.all.0.average|floatformat:-1 }}" data-rateit-ispreset="true" data-rateit-readonly="true"></div>	
+			</div> 
+		</div>	
+	</div>
+{% endfor %}
+{% else %}
+{% endif %}

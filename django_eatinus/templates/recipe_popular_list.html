@@ -1,0 +1,18 @@
+{% if recipes %}
+{% for recipe in recipes %}
+	<div class="popularlist">
+		<div class="content">
+			<div class="img">
+				<a href="/recipe/{{ recipe.id }}/"><img src="{{ MEDIA_URL }}{{ recipe.images.all.0.thumb|urlencode }}"></a>
+			</div>
+			<div class="info1">
+				<p class="title">
+					<a href="/recipe/{{ recipe.id }}/">{{ recipe.name|escape }}</a>	
+				</p>
+				<div class="rateit" data-rateit-value="{{ recipe.statistic.all.0.average|floatformat:-1 }}" data-rateit-ispreset="true" data-rateit-readonly="true"></div>					
+			</div> 
+		</div>
+	</div>
+{% endfor %}
+{% else %}
+{% endif %}

@@ -1,0 +1,21 @@
+{% load gravatar %}
+
+{% if comments %}
+<div class="comment">
+	<ul>
+		{% for comment in comments %}
+		<li class="item">
+			<span class="col-lg-1"><img src="{% gravatar_for_user comment.commenter 50 %}"></span>
+			<span class="col-lg-11">
+			<p class="author">
+			<strong>{{comment.commenter.username|escape }}</strong>
+			<span class="date">{{ comment.date|date:"Y-m-d H:i" }}</span>
+			</p>  
+			<p>{{ comment.content|escape }}</p>
+			</span>
+		</li> 
+		{% endfor %}
+	</ul>
+</div>
+{% else %}
+{% endif %}

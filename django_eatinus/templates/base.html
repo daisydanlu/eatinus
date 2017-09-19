@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="pragma" content="no-cache" />
+<title>EatinUS</title>
+<link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.min.css" />
+<link rel="stylesheet" href="{{ STATIC_URL }}css/theme.css" />
+<link rel="stylesheet" href="{{ STATIC_URL }}css/fontstyle.css" />
+<link rel="stylesheet" href="{{ STATIC_URL }}css/rateit.css" />
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+<script type="text/javascript" src="{{ STATIC_URL }}jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}bootstrap.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}dropdownbutton.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}jquery.rateit.min.js"></script>
+{% block external %}{% endblock %}
+</head>
+
+<body>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+	<div id="wrap">
+		<div class="push20 bgwhite"></div>
+		<div id="pagehead">
+			<div class="container">
+				<div id="logo" class="col-xs-3">
+				<a href="/">EatinUS</a>
+				<div id="sublogo" href="/"><img src="{{ STATIC_URL }}images/sublogo.png"></img></div>
+				</div>
+		        <div id="searchbar" class="col-xs-6">
+		            <div class="search-wrapper">
+		            <form id="searchform">
+						<span id="searchcategory" class="dropdownbutton" tabindex="1">
+						    <span class="title">Food</span>
+						    <ul class="dropdown">
+						    	<li>Food</li>
+						        <li>Restaurant</li>
+						        <li>Recipe</li>
+						    </ul>
+						</span>
+				        <input name="keyword" type="text" placeholder="Find what you love to eat">
+				        <button id ="searchbutton">Search</button>
+		            </form>		            
+		            </div>
+		        </div>
+				<div id="log" class="col-xs-3"> 
+					<div class="wrapper">
+					{% if user.is_authenticated %} 
+					<span><a href="/user/{{ user.username }}/">{{ user.username }}</a>
+					</span>
+					<a href="/logout/" class="btn btn-sm btn-info">Log Out</a>
+					{% else %} 
+					<a href="/register" class=" btn btn-sm btn-primary">Register</a>
+					<a href="/login/" class="btn btn-sm btn-default">Log In</a>
+					{% endif %}
+					</div>
+				</div>
+
+			</div>
+		</div>
+		
+		<div id="menubar">
+			<div class="container">
+				<div class="col-xs-3">
+					<div id="menubarleft">
+					Site Under Test
+					</div>
+				</div>
+				<div class="col-xs-6">
+				<div class="navmenu">
+					<ul class="main">
+						<li class="regular"><a href="/">Home</a></li>
+						<li class="regular"><a href="/food/">Food</a></li>
+						<li class="regular"><a href="/restaurants/">Restaurant</a></li>
+						<li class="regular"><a href="/recipes/">Recipe</a></li>
+												
+						{% if user.is_authenticated %}
+						<li class="dropdown">
+			              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Share</a>
+			              <ul class="dropdown-menu">
+			                <li><a href="/food/save/">Food</a></li>
+			                <li><a href="/restaurant/save">Restaurant</a></li>
+			                <li><a href="/recipe/save/">Recipe</a></li>
+			              </ul>
+						</li> 
+						{% endif %}
+					</ul>
+				</div>
+				</div>
+				
+				<div class="col-xs-3">
+					<div id="social">
+					<div class="fb-like" data-href="" 
+						data-width="" data-height="30" data-colorscheme="light" data-layout="button_count"
+						data-action="like" data-show-faces="true" data-send="false">
+					</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		
+		<div class="headpush"></div>
+		
+		{% block gallery %}{% endblock %}
+					
+		<div id="contentarea">
+		<div class="container">
+			<div class="main">
+				{% block content %}{% endblock %}
+			</div>
+			<div class="clear push40"></div>
+		</div>
+		</div>
+		
+		{% block market %}{% endblock %}
+		
+	</div>
+	
+	<div id="footer" class="text-center">
+		<div class="container">
+			<p class="copyright">Copyright &copy 2013 EatinUS</p>
+		</div>
+	</div>
+
+</body>
+
+</html>

@@ -1,0 +1,14 @@
+{% extends "base.html" %} 
+
+{% block content %}
+
+<div>
+	<div id = "register">
+		<div class="h4">Register</div>
+		<hr>
+		{% load crispy_forms_tags %}
+		{% crispy form %}
+	</div>
+	<div class="col-lg-4"></div>
+</div>
+{% endblock %}

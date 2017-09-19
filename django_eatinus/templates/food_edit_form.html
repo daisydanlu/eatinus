@@ -1,0 +1,8 @@
+{% load crispy_forms_tags %}
+
+
+<form class="col-lg-8" enctype="multipart/form-data" method="post"
+	action="{{ request.path }}">
+	{% csrf_token %} {{ form|crispy}}
+	<button type="submit" class="btn btn-primary">Submit</button>
+</form>

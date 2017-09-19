@@ -1,0 +1,40 @@
+{% load gravatar %}
+
+{% if food %}
+<div class="content">
+	<div class="headline">
+		<span class="title">{{food.name|escape }}</span>
+		<span class="rating">
+			<strong>{{food.statistic.all.0.average|floatformat:-1}}</strong>
+		</span>
+	</div>
+	<p>
+	<img src="{% gravatar_for_user food.user 30 %}">
+	<a href="/user/{{ food.user.username }}/"> {{food.user.username }}</a>
+	<span></span>{{ food.date|date:"Y-m-d H:i" }}</span>
+	</p>
+	<div class="imagecontainer">
+	<div class="image">
+		<img src="{{ MEDIA_URL }}{{ food.images.all.0.image|urlencode }}">
+	</div>
+	</div>
+
+	<p class="subtitle">Description:</p>	
+	<p class="text">
+		{{food.description}}
+	</p>
+	<p class="subtitle">Where to buy:</p>
+	<p class="text">{{ food.location|escape}}</p>
+
+	{% if is_author %}
+		<div class="edit">
+			<a class="btn btn-primary" href="/food/{{ food.id }}/edit/">Edit</a>
+			<a class="btn btn-primary" href="/food/{{ food.id }}/delete/">Delete</a>	
+		</div>
+	{% endif %}
+	<input type="hidden" value="{{food.id}}" id='hidden_id'>
+	<input type="hidden" value="food" id='hidden_category'>
+</div>
+{% else %}
+<p>Food does not exist.</p>
+{% endif %}

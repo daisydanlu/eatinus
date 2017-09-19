@@ -1,0 +1,11 @@
+{% load crispy_forms_tags %}
+
+{% if user.is_authenticated %}
+  <form action="./comment/" method="post">
+    {% csrf_token %}
+	{{ form|crispy}}
+    <input type="submit" class="btn btn-primary" name="post" value="Submit Comment" />
+  </form>
+{% else %}
+<div>Please <a href="/login/">log in</a> to comment.</div>
+{% endif %}

@@ -1,0 +1,23 @@
+
+{% if recent_shared_recipes %}
+<div class="summary">
+	<ul>
+		{% for recipe in recent_shared_recipes %}
+		<li class="panel">
+			<a href="/recipe/{{ recipe.id }}/">
+				<img src="{{ MEDIA_URL }}{{ recipe.images.all.0.thumb|urlencode }}">
+			</a>
+			<p class="title">{{recipe.name|escape }}</p>
+			<p>Ingredients: 
+			{% for ingredient in recipe.ingredient_set.all %}
+				{{ingredient.name|escape }}
+			{% endfor %}
+			</p>
+			<p>{{ recipe.date|date:"Y-m-d H:i"}}</p>
+		</li> 
+		{% endfor %}
+	</ul>
+</div>
+{% else %}
+<p>You have not shared any recipes.</p>
+{% endif %}

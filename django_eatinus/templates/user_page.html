@@ -1,0 +1,37 @@
+
+{% extends "base.html" %} 
+{% load gravatar %}
+
+{% block content %} 
+<div class="col-lg-8">
+
+<div>
+<p class="h4">Shared Food</p>
+<hr/>
+{% include 'food_user_list.html' %} 
+</div>
+
+<div class="push40"></div>
+
+<div class="">
+<p class="h4">Shared Recipes</p>
+<hr/>
+{% include 'recipe_user_list.html' %} 
+</div class="">
+
+
+</div>
+
+<div class="col-lg-4">
+<div class="profilebar">
+	<ul>
+	<li class=""><img src="{% gravatar_for_user username 80 %}">
+		</li>
+	<li><h4>{{ username }}</h4></li>
+	<li><div class="fonticon2 clear" aria-hidden="true" data-icon="&#xe030;"></div><a href="#">Your favourites</a></li>
+	<li><div class="fonticon2 clear" aria-hidden="true" data-icon="&#xe015;"></div>Shared {{food_num}} food</a></li>
+	<li><div class="fonticon2 clear" aria-hidden="true" data-icon="&#xe100;"></div>Shared {{recipe_num}} recipes</li>
+	</ul>
+</div>
+</div>
+{% endblock %}

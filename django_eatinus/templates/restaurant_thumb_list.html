@@ -1,0 +1,27 @@
+
+{% if restaurants %}
+<div class="summary">
+	<ul>
+		{% for restaurant in restaurants %}
+		<li class="">
+			<a href="/restaurant/{{ restaurant.id }}/">
+				<img src="{{ MEDIA_URL }}{{ restaurant.images.all.0.thumb|urlencode }}">
+			</a>
+			<p class="title">{{restaurant.name|escape }}</p>
+			<span class="rateit" data-rateit-value="{{ restaurant.statistic.all.0.average|floatformat:-1 }}" data-rateit-ispreset="true" data-rateit-readonly="true"></span>	
+			
+			<p>Description: 
+				{{restaurant.description|escape }}
+			</p>
+			<p>Location: 
+				{{restaurant.address.city|capfirst|escape }}
+			</p>			
+			<p>{{ restaurant.date|date:"Y-m-d H:i"}}</p>
+		</li> 
+		<hr>
+		{% endfor %}
+	</ul>
+</div>
+{% else %}
+<p>We have not found any restaurants.</p>
+{% endif %}

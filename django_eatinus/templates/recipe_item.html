@@ -1,0 +1,46 @@
+{% load gravatar %}
+
+{% if recipe %}
+<div class="content">
+	<div class="headline">
+		<span class="title">{{recipe.name|escape }}</span>
+		<span class="rating">
+			<strong>{{recipe.statistic.all.0.average|floatformat:-1}}</strong>
+		</span>
+	</div>
+	<p>
+	<img src="{% gravatar_for_user recipe.user 30 %}">
+	<a href="/user/{{ recipe.user.username }}/"> {{recipe.user.username }}</a>
+	<span></span>{{ recipe.date|date:"Y-m-d H:i" }}</span>
+	</p>
+	<div class="imagecontainer">
+	<div class="image">
+		<img src="{{ MEDIA_URL }}{{ recipe.images.all.0.image|urlencode }}">
+	</div>
+	</div>
+
+	<p class="subtitle">Ingredients:</p>	
+	<p class="text">
+		{% for ingredient in recipe.ingredient_set.all %}
+			{{ ingredient.name|escape}}
+		{% endfor %}
+	</p>
+	<p class="subtitle">Cook Instructions:</p>
+	<p class="text">{{ recipe.instruction|escape}}</p>
+	{% if recipe.note %}
+		<p class="subtitle">Cook's Notes:</p>
+		<p class="text">{{ recipe.note|escape}}</p>
+	{% endif %}
+
+	{% if is_author %}
+		<div class="edit">
+			<a class="btn btn-primary" href="/recipe/{{ recipe.id }}/edit/">Edit</a>
+			<a class="btn btn-primary" href="/recipe/{{ recipe.id }}/delete/">Delete</a>	
+		</div>
+	{% endif %}
+	<input type="hidden" value="{{recipe.id}}" id='hidden_id'>
+	<input type="hidden" value="recipe" id='hidden_category'>
+</div>
+{% else %}
+<p>Recipe does not exist.</p>
+{% endif %}

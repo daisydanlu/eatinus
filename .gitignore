@@ -90,6 +90,7 @@ ENV/
 # Spyder project settings
 .spyderproject
 .spyproject
+.project
 
 # Rope project settings
 .ropeproject

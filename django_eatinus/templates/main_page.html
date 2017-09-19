@@ -1,0 +1,91 @@
+{% extends "base.html" %} 
+
+{% block external %}
+<script type="text/javascript" src="{{ STATIC_URL }}coin-slider.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}gallery.js"></script>
+<link rel="stylesheet" href="{{ STATIC_URL }}css/coin-slider-styles.css" type="text/css" />
+
+{% endblock %}
+
+{% block gallery %}
+	{% include 'gallery.html' %}
+{% endblock %}
+			
+			
+{% block content %}
+	<div class="popular">
+		<div>
+			<span class="t1">Popular Food</span>
+			<span class="t2"><a href="food/" class="btn btn-xs btn-info">See More</a></span>
+		</div>
+		<hr>
+		{% include 'food_popular_list.html' %}	
+		<br style="clear:both" />
+	</div>
+
+	<div class="popular">
+		<div>
+			<span class="t1">Popular Restaurants</span>
+			<span class="t2"><a href="restaurants/" class="btn btn-xs btn-info">See More</a></span>
+		</div>
+		<hr>
+		{% include 'restaurant_popular_list.html' %}	
+		<br style="clear:both" />
+	</div>
+		
+	<div class="popular">
+		<div>
+			<span class="t1">Popular Recipes</span>
+			<span class="t2"><a href="recipes/" class="btn btn-xs btn-info">See More</a></span>
+		</div>
+		<hr>
+		{% include 'recipe_popular_list.html' %}	
+		<br style="clear:both" />
+	</div>
+
+{% endblock %}
+
+{% block market %}
+<div id="marketarea">
+	<div class="container">
+	<div class="market">
+
+		<div class="col-sm-6">
+			<div class="fonticon1">
+			<div aria-hidden="true" data-icon="&#xe07a;"></div>	
+			</div>			
+			<p class="title">Discover Snack Food</p>
+			<p>Discover tasty snack food you may ignore.</p>
+		</div>
+		
+		<div class="col-sm-6">
+			<div class="fonticon1">
+			<div aria-hidden="true" data-icon="&#xe0d8;"></div>	
+			</div>
+			<p class="title">Share Recipes</p>
+			<p>Share your esoteric recipes and see what others
+				like.</p>
+		</div>		
+	</div>
+
+	<div class="market">
+		<div class="col-sm-6">
+			<div class="fonticon1">
+			<div aria-hidden="true" data-icon="&#xe0fd;"></div>	
+			</div>			
+			<p class="title">Restaurant experiences</p>
+			<p>Recommend your favorite restaurants you tried.</p>
+		</div>
+
+		<div class="col-sm-6">
+			<div class="fonticon1">
+			<div aria-hidden="true" data-icon="&#xe08b;"></div>	
+			</div>		
+			<p class="title">Hang Out and Eat</p>
+			<p>Invite your friends and eat together.</p>
+		</div>
+	</div>
+	</div>
+	<div class="clear push40"></div>
+</div>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% load gravatar %}
+
+{% if restaurant %}
+<div class="content">
+	<div class="headline">
+		<span class="title">{{restaurant.name|escape }}</span>
+		<span class="rating">
+			<strong>{{restaurant.statistic.all.0.average|floatformat:-1}}</strong>
+		</span>
+	</div>
+	<p>
+	<span>{{ restaurant.date|date:"Y-m-d H:i" }}</span>
+	</p>
+	<div class="imagecontainer">
+	<div class="image">
+		<img src="{{ MEDIA_URL }}{{ restaurant.images.all.0.image|urlencode }}">
+	</div>
+	</div>
+
+	<p class="subtitle">Description:</p>	
+	<p class="text">
+		{{restaurant.description}}
+	</p>
+	<p class="subtitle">Address:</p>
+	<p class="text address">{{ restaurant.address.address1|escape}} 
+	{{ restaurant.address.address2|escape}}, 
+	{{ restaurant.address.city|escape}} 
+	{{ restaurant.address.state|escape}}  
+	{{ restaurant.address.zip|escape}}</p>
+	<button type="button" class = "maptoggle btn btn-xs btn-info">Show Map</button>
+	<div id="mapcontainer">
+		<div id = "map"></div>
+	</div>
+
+		<div class="edit">
+			<a class="btn btn-primary" href="/restaurant/{{ restaurant.id }}/edit/">Edit</a>
+		</div>
+	<input type="hidden" value="{{restaurant.id}}" id='hidden_id'>
+	<input type="hidden" value="restaurant" id='hidden_category'>
+</div>
+{% else %}
+<p>Restaurant does not exist.</p>
+{% endif %}

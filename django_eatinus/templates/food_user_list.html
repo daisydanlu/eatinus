@@ -1,0 +1,18 @@
+
+{% if recent_shared_foods %}
+<div class="summary">
+	<ul>
+		{% for food in recent_shared_foods %}
+		<li class="panel">
+			<a href="/food/{{ food.id }}/">
+				<img src="{{ MEDIA_URL }}{{ food.images.all.0.thumb|urlencode }}">
+			</a>
+			<p class="title">{{food.title|escape }}</p> 
+			<p>{{ food.date|date:"Y-m-d H:i" }}</p>
+		</li> 
+		{% endfor %}
+	</ul>
+</div>
+{% else %}
+<p>You have not shared any food.</p>
+{% endif %}

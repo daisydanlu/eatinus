@@ -1,0 +1,6 @@
+settings:
+install_app gunicorn
+wsgi.py
+static_url
+eatinus_local_media to eatinus_media
+databse config

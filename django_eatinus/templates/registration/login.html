@@ -1,0 +1,22 @@
+{% extends "base.html" %} 
+
+{% block content %} 
+
+
+{% load crispy_forms_tags %}
+	{% if form.errors %}
+	<p>Your username and password didn't match. Please try again.</p>
+	{% endif %} 
+	<div id = "login">
+		<div class="h4">Log In</div>
+		<hr>
+		<form class="col-sm-4" method="post" action=".">
+			{% csrf_token %} {{ form|crispy}}
+			<!--     <p><label for="id_username">Username:</label>{{ form.username }}</p> -->
+			<!--     <p><label for="id_password">Password:</label>{{ form.password }}</p> -->
+			<input type="hidden" name="next" value="/" /> 
+			<input class="btn btn-primary" type="submit" value="Log In" />
+		</form>
+	</div>
+	<div class="col-sm-8"></div>
+{% endblock %}

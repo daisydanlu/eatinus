@@ -1,0 +1,12 @@
+{% extends "base.html" %} 
+
+{% block content %} 
+<div class="col-lg-3">
+	<div class="searchpanel">
+		<p>search bar</p>
+	</div>
+</div>
+<div class="col-lg-9">
+	{% include 'recipe_thumb_list.html' %} 
+</div>
+{% endblock %}
